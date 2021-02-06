@@ -18,6 +18,10 @@ or
 yarn add @journyio/clock
 ```
 
+This package depends on [moment/luxon](https://github.com/moment/luxon). If you already have another datetime library installed in your project, we advise you to fork this package.
+
+We don't recommend consuming this package in plain JavaScript (to be able to use interfaces).
+
 ## 🔌 Getting started
 
 First, [read this blogpost](https://blog.frankdejonge.nl/being-in-control-of-time-in-php/) to understand the reasoning behind this approach.
