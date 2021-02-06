@@ -1,9 +1,9 @@
 {
-  "name": "@journyio/:package",
-  "homepage": "https://github.com/journy-io/:package",
-  "repository": "github:journy-io/:package",
+  "name": "@journyio/clock",
+  "homepage": "https://github.com/journy-io/clock",
+  "repository": "github:journy-io/clock",
   "version": "0.0.0",
-  "description": ":description",
+  "description": "Consume time as a service",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -24,10 +24,15 @@
     "collectCoverage": true,
     "testEnvironment": "node"
   },
-  "dependencies": {},
+  "dependencies": {
+    "luxon": "^1.25.0"
+  },
   "sideEffects": false,
   "keywords": [
-    "TODO"
+    "clock",
+    "testing",
+    "time",
+    "timeout"
   ],
   "author": "journy.io",
   "license": "MIT",
@@ -36,6 +41,7 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
     "@types/jest": "^26.0.14",
+    "@types/luxon": "^1.25.1",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
     "eslint": "^7.10.0",

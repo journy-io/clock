@@ -1,26 +1,73 @@
-[![journy.io](banner.png)](https://journy.io/?utm_source=github&utm_content=readme-:package)
+[![journy.io](banner.png)](https://journy.io/?utm_source=github&utm_content=readme-clock)
 
-# :package
+# Clock
 
-![npm](https://img.shields.io/npm/v/@journyio/:package?color=%234d84f5&style=flat-square)
+![npm](https://img.shields.io/npm/v/@journyio/clock?color=%234d84f5&style=flat-square)
 
-:description
+Consume time as a service.
 
 ## 💾 Installation
 
 You can use your package manager (`npm` or `yarn`) to install:
 
 ```bash
-npm install --save @journyio/:package
+npm install --save @journyio/clock
 ```
 or
 ```bash
-yarn add @journyio/:package
+yarn add @journyio/clock
 ```
 
 ## 🔌 Getting started
 
-:examples
+First, [read this blogpost](https://blog.frankdejonge.nl/being-in-control-of-time-in-php/) to understand the reasoning behind this approach.
+
+Let's say we have a class that creates a user:
+
+```ts
+import { DateTime } from "luxon";
+import { Clock } from "./Clock";
+
+class User {
+  constructor(/* ... */ private readonly createdAt: DateTime) {}
+
+  getCreatedAt() {
+    return this.createdAt;
+  }
+}
+
+class UserService {
+  constructor(private readonly clock: Clock) {}
+
+  create(/* ... */): User {
+    return new User(
+      /* ... */
+      this.clock.getUTCTime()
+    );
+  }
+}
+```
+
+In our tests we can use `ClockFixed` to control the current time:
+
+```ts
+const now = DateTime.utc();
+const clock = new ClockFixed(now);
+const userService = new UserService(clock);
+const user = userService.create(/* ... */);
+
+expect(user.getCreatedAt()).toEqual(now);
+```
+
+In our normal code we can use `ClockSystem`:
+
+```ts
+import { ClockSystem } from "./ClockSystem";
+
+const userService = new UserService(new ClockSystem());
+```
+
+By depending on `Clock` we can consume time as a service (so that we're in control of time). Normally we would need to rely on magic or use `setTimeout` to test code that uses the current time. 
 
 ## 💯 Tests
 
@@ -29,13 +76,3 @@ To run the tests:
 ```bash
 npm run test
 ```
-
-## ❓ Help
-
-We welcome your feedback, ideas and suggestions. We really want to make your life easier, so if we’re falling short or should be doing something different, we want to hear about it.
-
-Please create an issue or contact us via the chat on our website.
-
-## 🔒 Security
-
-If you discover any security related issues, please email hans at journy io instead of using the issue tracker.
