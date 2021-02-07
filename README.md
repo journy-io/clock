@@ -30,7 +30,7 @@ Let's say we have a class that creates a user:
 
 ```ts
 import { DateTime } from "luxon";
-import { Clock } from "./Clock";
+import { Clock } from "@journyio/clock";
 
 class User {
   constructor(/* ... */ private readonly createdAt: DateTime) {}
@@ -55,6 +55,8 @@ class UserService {
 In our tests we can use `ClockFixed` to control the current time:
 
 ```ts
+import { ClockFixed } from "@journyio/clock";
+
 const now = DateTime.utc();
 const clock = new ClockFixed(now);
 const userService = new UserService(clock);
@@ -66,7 +68,7 @@ expect(user.getCreatedAt()).toEqual(now);
 In our normal code we can use `ClockSystem`:
 
 ```ts
-import { ClockSystem } from "./ClockSystem";
+import { ClockSystem } from "@journyio/clock";
 
 const userService = new UserService(new ClockSystem());
 ```
