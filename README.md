@@ -3,6 +3,7 @@
 # Clock
 
 ![npm](https://img.shields.io/npm/v/@journyio/clock?color=%234d84f5&style=flat-square)
+[![npm downloads](https://img.shields.io/npm/dm/@journyio/clock?style=flat-square)](https://www.npmjs.com/package/@journyio/clock)
 
 Consume time as a service.
 
