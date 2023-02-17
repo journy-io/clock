@@ -25,7 +25,7 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "luxon": "3.2.1"
+    "luxon": "^3.2.1"
   },
   "sideEffects": false,
   "keywords": [
